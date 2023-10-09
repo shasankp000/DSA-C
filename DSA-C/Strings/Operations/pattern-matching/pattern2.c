@@ -14,7 +14,7 @@ int main() {
 
     int size = 100;
 
-    int i, j, k, s_len, input_len, r_len, sep_len, total_len,f_index, l_index = 0;
+    int i, j, k, l, s_len, input_len, r_len, sep_len, total_len,f_index, l_index = 0;
 
     char *str, *input_str, *replace_str, *sep_str;
 
@@ -51,44 +51,31 @@ int main() {
     replace_str = (char *)realloc(replace_str, r_len+1);
     
 
-    // searching where the string to be replaced exists in the main string.
-
     for (k = 0; k < s_len; k++) {
-        
         if (str[k] == input_str[j]) {
-            
-            break; // record starting index of string.
-
-        }
-
-    }
-    
-    j = 0; // resetting j
-
-    for(i=0; i<s_len; i++) {
-
-        if (str[i] == input_str[j]) { // check for first instance of the first char of the string
-            
             j++;
+            if (j == input_len) {
 
+                // silent search algo.
+
+                // printf("String search complete. \n");
+                // printf("String starts at index %d and ends at index %d \n", k - input_len + 1, k);
+                break;
+            }
+        } else {
+            j = 0;
         }
-
-        
-        if (j == input_len) {
-            break;
-        }
-
-        if (i == s_len && j == 0) {
-            break;
-        }
-
-
     }
+
+    if (j != input_len) {
+        printf("String not found.\n");
+    }
+
 
     // storing the first and last indexes into separate variables.
 
-    f_index = k;
-    l_index = i;
+    f_index = k - input_len + 1;
+    l_index = k;
 
     j = 0;
 

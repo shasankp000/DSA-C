@@ -14,8 +14,8 @@ int main() {
 
     // initializing the strings.
 
-    str = (char *)malloc(size * sizeof(char));
-    input_str = (char *)malloc(size * sizeof(char));
+    str = malloc(size * sizeof(char));
+    input_str = malloc(size * sizeof(char));
 
     printf("Enter the main string: ");
     gets(str);
@@ -26,44 +26,24 @@ int main() {
     printf("\n");
 
     s_len = strlen(str);
-    input_len = strlen(input_str);
-
+    input_len = strlen(input_str);  
 
     for (k = 0; k < s_len; k++) {
-        
         if (str[k] == input_str[j]) {
-            
-            break; // record starting index of string.
-
-        }
-
-    }
-
-    printf("%d \n", k);
-    j = 0; // resetting j
-
-    for(i=0; i<s_len; i++) {
-
-        if (str[i] == input_str[j]) { // check for first instance of the first char of the string
-            
             j++;
-
+            if (j == input_len) {
+                printf("String search complete. \n");
+                printf("String starts at index %d and ends at index %d \n", k - input_len + 1, k);
+                break;
+            }
+        } else {
+            j = 0;
         }
-
-        if (j == input_len) {
-            printf("String search complete, string found.");
-            break;
-        }
-
-        if (i == s_len && j == 0) {
-            printf("Search result came up empty, string does not exist.");
-            break;
-        }
-
-
     }
-    printf("\n");
-    printf("It starts at index %d and ends at index %d in the main string.\n", k, i);
+
+    if (j != input_len) {
+        printf("String not found.\n");
+    }
 
 
     // cleanup
