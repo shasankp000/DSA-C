@@ -2,6 +2,9 @@
 #include<string.h>
 #include<stdlib.h>
 
+// inserting a substring within the main string.
+
+// Hello world! -> Hello, good old world!
 
 int main() {
 
