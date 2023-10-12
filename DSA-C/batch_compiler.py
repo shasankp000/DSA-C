@@ -100,12 +100,6 @@ def main() -> None:
                                 bin_file_list.append(bin_file)
 
 
-                for files in os.walk(dir_path):
-                    for file in files:
-                        for bin_file in file:
-                            if bin_file.endswith(".out"):
-                                bin_file_list.append(bin_file)
-
                 if bin_file_list != []:
                     n1 = len(bin_file_list)
 
