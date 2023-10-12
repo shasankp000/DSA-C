@@ -51,7 +51,7 @@ def main() -> None:
             file_name_sel = Path(c_file_list[f_no-1])
             print(f"Selected file: {c_file_list[f_no-1]}")
             print(f"Compiling {c_file_list[f_no-1]}....")
-            os.system(f"gcc {c_file_list[f_no-n]} -o {file_name_sel.stem}")
+            os.system(f"gcc {c_file_list[f_no-1]} -o {file_name_sel.stem}")
 
         else:
             print("Wrong input.")
