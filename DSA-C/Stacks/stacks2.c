@@ -36,6 +36,29 @@ struct Stack {
 };
 
 
+int StackTop(struct Stack * stack_ptr) {
+
+
+    int stack_top = stack_ptr->top;
+
+    return stack_top;
+
+
+}
+
+int StackBottom(struct Stack * stack_ptr) {
+
+
+    int stack_bottom;
+
+    stack_bottom = stack_ptr->ptr->data;
+
+    return stack_bottom;
+
+
+}
+
+
 int isEmpty(struct Node *head) {
 
     struct Bool * bool_val = malloc(sizeof(struct Bool));
@@ -89,16 +112,30 @@ void Peek(struct Stack * stack_ptr) {
 
 void Pop(struct Stack * stack_ptr ) {
 
-    stack_ptr->top = 0;
+    if (stack_ptr->top_ptr->back == NULL) {
 
-    stack_ptr->top_ptr->data = 0;
+        stack_ptr->top = 0;
 
-    stack_ptr->top_ptr = stack_ptr->top_ptr->back;
+        stack_ptr->top_ptr->data = 0;
 
-    stack_ptr->top = stack_ptr->top_ptr->data;
+    }
+
+    else {
+
+        stack_ptr->top = 0;
+
+        stack_ptr->top_ptr->data = 0;
+
+        stack_ptr->top_ptr = stack_ptr->top_ptr->back;
+
+        stack_ptr->top = stack_ptr->top_ptr->data;
+
+
+    }
 
 
 }
+
 
 
 void Push(struct Node * head, struct Stack * stack_ptr, int data) {
@@ -212,41 +249,27 @@ struct Node * CreateNode(struct Node *head, struct Stack * stack_ptr) {
 
 }
 
-void StackTraverse(struct Node * head) {
+void StackTraverse(struct Stack * stack_ptr) {
 
-    struct Node * p = head;
+    struct Node * head = stack_ptr->ptr;
 
-    while (p->next != NULL) {
+    while(head->next != NULL) {
 
-        if (p->data != 0) {
+        printf("%d \n", head->data);
 
-            printf("%d \n", p->data);
-
-        }
-
-        else {
-
-            break;
-
-        }
-
-        p = p->next;
-
+        head=head->next;
 
     }
 
 
-
-
 }
-
 
 
 int main() {
 
     int max_size = 8;
 
-    int i, bool_val;
+    int i, bool_val, top, bottom;
 
     struct Stack * sp;
 
@@ -269,6 +292,8 @@ int main() {
 
     }
 
+
+    sp->ptr = head;
     
     Push(head, sp, 7);
     Push(head, sp, 11);
@@ -280,7 +305,14 @@ int main() {
 
     Pop(sp);
 
-    Peek(sp);
+    top = StackTop(sp);
+
+    bottom = StackBottom(sp);
+
+
+    printf("top = %d \n", top);
+
+    printf("bottom = %d \n", bottom);
 
 
     bool_val = isEmpty(head);
@@ -293,7 +325,7 @@ int main() {
 
     printf("The elements in the stack are: \n");
 
-    StackTraverse(head); 
+    StackTraverse(sp); 
 
 
     return 0;
