@@ -15,5 +15,5 @@ int main() {
 
     fun1(&arr[4]); // passing reference to the address of the value.
 
-
+    return 0;
 }
